@@ -1,17 +1,17 @@
 package main
 
 import (
-    "log"
-
-    "github.com/gofiber/fiber/v2"
+  "github.com/gofiber/fiber/v2"
+  "github.com/lukke-dev/api-golang/database"
 )
 
 func main() {
-    app := fiber.New()
+  database.ConnectDb()
+  app := fiber.New()
 
-    app.Get("/", func (c *fiber.Ctx) error {
-        return c.SendString("Hello, World! hot reload")
-    })
+  app.Get("/", func (c *fiber.Ctx) error {
+      return c.SendString("Hello, World! hot reload")
+  })
 
-    log.Fatal(app.Listen(":3000"))
+  app.Listen(":3000")
 }
